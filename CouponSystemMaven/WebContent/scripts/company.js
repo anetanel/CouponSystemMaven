@@ -3,51 +3,31 @@
 
     var companyController = function ($scope, $http, uiGridConstants, $uibModal, $log) {
 
+        $scope.newCoupon = function () {
+            var newCoupon = true;
+            $scope.editCoupon();
+        };
 
-        $scope.showInfo = function (row) {
+        $scope.editCoupon = function (row) {
 
             var modalInstance = $uibModal.open({
-                controller: childController,
-                templateUrl: 'ngTemplate/infoPopup.html',
+                controller: "couponDialog",
+                templateUrl: 'html/coupondialog.html',
                 resolve: {
                     selectedRow: function () {
-                        return row.entity;
+                        if (row) {
+                            return row.entity;
+                        }
                     }
                 }
             });
 
-            modalInstance.result.then(function (selectedItem) {
-                $log.log('modal selected Row: ' + selectedItem);
-            }, function () {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
+            // modalInstance.result.then(function (selectedRow) {
+            //     $log.log('modal selected Row: ' + selectedRow);
+            // }, function () {
+            //     $log.info('Modal dismissed at: ' + new Date());
+            // });
         };
-
-        var childController = function ($scope, $uibModalInstance, selectedRow) {
-            $scope.selectedRow = selectedRow;
-            $scope.startDateCollapsed = true;
-            $scope.endDateCollapsed = true;
-
-            $scope.test = "blah";
-            $scope.couponTypes = {};
-            $scope.selected={};
-            $http.get("rest/general/getCouponTypes")
-                .then(function (response) {
-                    $scope.couponTypes = response.data;
-                });
-
-
-            $scope.ok = function () {
-                $scope.selectedRow = null;
-                $uibModalInstance.close();
-            };
-
-            $scope.cancel = function () {
-                $scope.selectedRow = null;
-                $uibModalInstance.dismiss('cancel');
-            };
-        };
-
 
         $scope.companyCoupons = {
             enableRowSelection: true,
@@ -55,7 +35,7 @@
             enableSelectAll: false,
             enableRowHeaderSelection: false,
             enableFiltering: true,
-            rowTemplate: "<div ng-dblclick=\"grid.appScope.showInfo(row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>",
+            rowTemplate: "<div ng-dblclick=\"grid.appScope.editCoupon(row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>",
             columnDefs: [
                 {name: 'CouponId', type: 'number', sort: {direction: uiGridConstants.ASC, priority: 0}},
                 {name: 'CouponTitle'},

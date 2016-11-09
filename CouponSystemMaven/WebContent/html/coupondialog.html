@@ -1,0 +1,45 @@
+<div class="modal-header">
+	<h4>Coupon Information</h4>
+</div>
+<div class="modal-body">
+	<div>Title: <input type="text" value={{selectedRow.CouponTitle}}></div>
+
+	<div>Description: <input type="text" value={{selectedRow.CouponMessage}}></div>
+
+	<div>
+		Start Date:
+		<button type="button" class="btn btn-default" ng-click="startDateCollapsed = !startDateCollapsed">
+			{{selectedRow.CouponStartDate | date: 'yyyy-MM-dd'}}
+		</button>
+		<div uib-datepicker ng-model="selectedRow.CouponStartDate" uib-collapse="startDateCollapsed"></div>
+	</div>
+
+	<div>
+		End Date:
+		<button type="button" class="btn btn-default" ng-click="endDateCollapsed = !endDateCollapsed">
+			{{selectedRow.CouponEndDate | date: 'yyyy-MM-dd'}}
+		</button>
+		<div uib-datepicker ng-model="selectedRow.CouponEndDate" uib-collapse="endDateCollapsed"></div>
+	</div>
+
+	<div>No. of Coupons: <input type="number" ng-model="selectedRow.CouponAmount" min="0" max="9999"></div>
+
+	<div>Type:
+		<select ng-options="type for type in couponTypes" ng-model="selectedRow.CouponType"></select>
+	</div>
+
+	<div>Price: <input type="number" ng-model="selectedRow.CouponPrice" min="0" max="9999"></div>
+
+	<div>
+		<form action="../rest/upload" method="post" enctype="multipart/form-data">
+			<input type="file" name="file" accept="image/*" class="btn btn-default">
+			<input type="submit" value="Upload Image" class="btn btn-default"/>
+		</form>
+	</div>
+
+	<div>Image:</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary btnCustom" ng-click="ok()">OK!</button>
+	<button class="btn btn-primary btnCustom" ng-click="cancel()">Cancel</button>
+</div>
