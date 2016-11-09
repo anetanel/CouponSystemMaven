@@ -1,0 +1,21 @@
+<div style="width: 35%; margin: auto">
+
+
+	<form name="loginForm" ng-submit="login(username, password, clientType)">
+		<fieldset>
+			User Name: <input type="text" ng-model="username" placeholder="Enter login name" required><br/>
+			Password: <input type="password" ng-model="password" placeholder="Enter password" required><br/>
+		</fieldset>
+		<fieldset>
+			<legend>Login As:</legend>
+			<input type="radio" ng-model="clientType" value="COMPANY"> Company
+			<input type="radio" ng-model="clientType" value="CUSTOMER"> Customer
+			<input type="radio" ng-model="clientType" value="ADMIN"> Admin
+			<br/>
+			<input type="submit" value="Login">
+		</fieldset>
+	</form>
+
+
+</div>
+<p>debug:{{result}}</p>
