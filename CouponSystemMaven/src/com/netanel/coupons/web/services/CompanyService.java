@@ -3,6 +3,7 @@ package com.netanel.coupons.web.services;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +46,16 @@ public class CompanyService {
 	@POST
 	@Path("createCoupon")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void createCoupon(Coupon coupon) throws DAOException {
+	public void createCoupon(Map<String, String> couponMap) throws DAOException {
+		Coupon coupon = new Coupon(couponMap.get("title"),
+				LocalDate.parse(couponMap.get("startDate"), DateTimeFormatter.ISO_DATE),
+				LocalDate.parse(couponMap.get("endDate"), DateTimeFormatter.ISO_DATE),
+						Integer.parseInt(couponMap.get("amount")),
+						CouponType.valueOf(couponMap.get("type")),
+						couponMap.get("message"),
+						Double.parseDouble(couponMap.get("price")),
+						couponMap.get("image"));
+		System.out.println(coupon);
 		getFacade().createCoupon(coupon);
 	}
 	

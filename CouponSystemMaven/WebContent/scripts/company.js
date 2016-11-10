@@ -1,32 +1,21 @@
 (function () {
     var app = angular.module("couponSystem");
 
-    var companyController = function ($scope, $http, uiGridConstants, $uibModal, $log) {
+    var companyController = function ($scope, $http, uiGridConstants, $uibModal) {
 
         $scope.newCoupon = function () {
-            var newCoupon = true;
-            $scope.editCoupon();
+            $scope.editCoupon(null, true);
         };
 
-        $scope.editCoupon = function (row) {
-
+        $scope.editCoupon = function (row, isNew) {
             var modalInstance = $uibModal.open({
                 controller: "couponDialog",
                 templateUrl: 'html/coupondialog.html',
                 resolve: {
-                    selectedRow: function () {
-                        if (row) {
-                            return row.entity;
-                        }
+                    selectedRow: () => {if(row) return row.entity},
+                    isNew: () => isNew
                     }
-                }
-            });
-
-            // modalInstance.result.then(function (selectedRow) {
-            //     $log.log('modal selected Row: ' + selectedRow);
-            // }, function () {
-            //     $log.info('Modal dismissed at: ' + new Date());
-            // });
+                })
         };
 
         $scope.companyCoupons = {
