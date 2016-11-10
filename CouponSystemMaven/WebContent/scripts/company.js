@@ -13,7 +13,8 @@
                 templateUrl: 'html/coupondialog.html',
                 resolve: {
                     selectedRow: () => {if(row) return row.entity},
-                    isNew: () => isNew
+                    isNew: () => isNew,
+                    getCoupons: () => getCoupons
                     }
                 })
         };
@@ -42,10 +43,14 @@
             ]
         };
 
-        $http.get("rest/company/getAllCoupons")
-            .then(function (response) {
-                $scope.companyCoupons.data = response.data;
-            });
+        var getCoupons = function() {
+            $http.get("rest/company/getAllCoupons")
+                .then(function (response) {
+                    $scope.companyCoupons.data = response.data;
+                });
+        };
+
+        getCoupons();
 
     }
 

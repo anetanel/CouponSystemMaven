@@ -1,7 +1,7 @@
 (function () {
     var app = angular.module("couponSystem");
 
-    var couponDialog = function ($scope, $http, $uibModalInstance, selectedRow, isNew) {
+    var couponDialog = function ($scope, $http, $uibModalInstance, selectedRow, isNew, getCoupons) {
         if (selectedRow) {
             $scope.selectedRow = selectedRow;
         } else {
@@ -30,12 +30,13 @@
             };
 
             if (isNew) {
-                createCoupon(coupon);
+                //createCoupon(coupon);
             }
             //console.log(coupon.startDate.toISOString());
 
             $scope.selectedRow = null;
             $uibModalInstance.close();
+            getCoupons();
         };
 
         $scope.cancel = function () {
