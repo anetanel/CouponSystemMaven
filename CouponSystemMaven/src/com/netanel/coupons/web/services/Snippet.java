@@ -23,7 +23,7 @@ public class Snippet {
 	                                @FormDataParam("file") FormDataContentDisposition fileMetaData) throws Exception
 	{
 		System.out.println("in upload");
-	    String UPLOAD_PATH = "c:/temp/";
+	    String UPLOAD_PATH = "/WebContent/icons/";
 	    try
 	    {
 	        int read = 0;

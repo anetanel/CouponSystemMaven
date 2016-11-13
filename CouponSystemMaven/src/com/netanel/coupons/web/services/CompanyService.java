@@ -48,8 +48,8 @@ public class CompanyService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void createCoupon(Map<String, String> couponMap) throws DAOException {
 		Coupon coupon = new Coupon(couponMap.get("title"),
-				LocalDate.parse(couponMap.get("startDate"), DateTimeFormatter.ISO_DATE),
-				LocalDate.parse(couponMap.get("endDate"), DateTimeFormatter.ISO_DATE),
+				LocalDate.parse(couponMap.get("startDate").subSequence(0, 10)),
+				LocalDate.parse(couponMap.get("endDate").subSequence(0, 10)),
 						Integer.parseInt(couponMap.get("amount")),
 						CouponType.valueOf(couponMap.get("type")),
 						couponMap.get("message"),
@@ -92,8 +92,8 @@ public class CompanyService {
 	public void updateCoupon(Map<String, String> couponMap) throws DAOException {
 		Coupon coupon = new Coupon(Long.parseLong(couponMap.get("id")),
 									couponMap.get("title"),
-									LocalDate.parse(couponMap.get("startDate"), DateTimeFormatter.ISO_DATE),
-									LocalDate.parse(couponMap.get("endDate"), DateTimeFormatter.ISO_DATE),
+									LocalDate.parse(couponMap.get("startDate").subSequence(0, 10)),
+									LocalDate.parse(couponMap.get("endDate").subSequence(0, 10)),
 									Integer.parseInt(couponMap.get("amount")),
 									CouponType.valueOf(couponMap.get("type")),
 									couponMap.get("message"),

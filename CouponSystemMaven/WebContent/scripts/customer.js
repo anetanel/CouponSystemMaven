@@ -1,9 +1,21 @@
 (function () {
     var app = angular.module("couponSystem");
 
-    var customerController = function ($scope, $http, uiGridConstants) {
+    var customerController = function ($scope, $http, uiGridConstants, $uibModal, sharedProperties) {
 
+    	$scope.username = sharedProperties.getUsername();
+    	$scope.buyCoupons = function () {
+            var modalInstance = $uibModal.open({
+            	controller: "buyCouponDialog",
+                templateUrl: 'html/buycoupondialog.html',
+                resolve: {
+                    getCoupons: () => $scope.getCoupons
+                }
+            })
+        };
+    	
         $scope.customerCoupons = {
+        	enableFiltering: true,
             columnDefs: [
                 {name: 'CouponId', type: 'number',sort: {direction: uiGridConstants.ASC, priority: 0}},
                 {name: 'CouponTitle'},
@@ -20,12 +32,18 @@
                 }
             ]
         };
+        
+        $scope.getCoupons= function() {
+        	$http.get("rest/customer/getMyCoupons")
+            	.then(function (response) {
+            		console.log("in getCoupons");
+            		$scope.customerCoupons.data = response.data;
+            	});
+        };
 
-        $http.get("rest/customer/getMyCoupons")
-            .then(function (response) {
-                $scope.customerCoupons.data = response.data;
-            });
-
+        $scope.getCoupons();
+        
+        
 
     }
 

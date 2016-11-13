@@ -1,4 +1,9 @@
 <div>
-	<h1>Customer</h1>
+	<h2>Customer Control Panel</h2>
+	<h3>Welcome {{username}}</h3>
+	<hr>
+	<button type="button" class='btn btn-primary' ng-click="buyCoupons()">Buy Coupons</button>
+	<button type="button" class='btn btn-success' ng-click="getCoupons()">Refresh</button>
 	<div ui-grid="customerCoupons"></div>
+	
 </div>
