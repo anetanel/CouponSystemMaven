@@ -3,9 +3,13 @@
 
     var companyController = function ($scope, $http, uiGridConstants, $uibModal, $confirm) {
 
+    	$http.get("rest/company/getCompanyName")
+    	.then(function(response){
+    		$scope.companyName = response.data;
+    	});
+    	console.log($scope.companyName);
         $scope.mySelectedRow = false;
         $scope.deleteCoupon = function () {
-            // $scope.mySelectedRow = $scope.gridApi.selection.getSelectedRows()[0];
             $confirm({
                 text: 'Are you sure you want to delete "' + $scope.mySelectedRow.CouponTitle + ' (ID: ' + $scope.mySelectedRow.CouponId + ')" ?',
                 title: 'Delete it',

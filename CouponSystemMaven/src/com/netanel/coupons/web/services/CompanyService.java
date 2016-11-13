@@ -134,7 +134,7 @@ public class CompanyService {
 	
 	@GET
 	@Path("getCompanyName")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	public String getCompanyName() throws DAOException {
 		return getFacade().getCompName();
 	}

@@ -1,7 +1,7 @@
 (function () {
     var app = angular.module("couponSystem");
 
-    var loginController = function ($scope, $http, $window, $uibModal, sharedProperties) {
+    var loginController = function ($scope, $http, $window, $uibModal) {
 
         var onLogin = function (response) {
             $scope.result = response.data;
@@ -18,9 +18,7 @@
             }
         };
 
-        $scope.login = function (username, password, clientType) {
-            // $scope.result=username + "," + password + "," + clientType;
-        	sharedProperties.setUsername(username);
+        $scope.login = function (username, password, clientType) {       	
         	$scope.username = username;
             $http.get("login?username=" + username + "&password=" + password + "&clientType=" + clientType)
                 .then(onLogin);

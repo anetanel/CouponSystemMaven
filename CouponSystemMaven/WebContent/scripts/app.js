@@ -1,20 +1,6 @@
 (function () {
 
-    var app = angular.module("couponSystem", ['ngAnimate', 'ngSanitize','ui.grid', 'ngRoute', 'ui.bootstrap', 'ui.grid.selection', 'angular-confirm']);
-
-    
-    app.service('sharedProperties', function() {
-        var username = 'No User';
-
-        return {
-            getUsername: function() {
-                return username;
-            },
-            setUsername: function(value) {
-            	username = value;
-            }
-        }
-    });
+    var app = angular.module("couponSystem", ['ngAnimate', 'ngSanitize','ui.grid', 'ngRoute', 'ui.bootstrap', 'ui.grid.selection', 'angular-confirm', 'ui.grid.autoResize']);
         
     app.config(function ($routeProvider) {
         $routeProvider

@@ -1,9 +1,12 @@
 (function () {
     var app = angular.module("couponSystem");
 
-    var customerController = function ($scope, $http, uiGridConstants, $uibModal, sharedProperties) {
+    var customerController = function ($scope, $http, uiGridConstants, $uibModal) {
 
-    	$scope.username = sharedProperties.getUsername();
+    	$http.get("rest/customer/getCustomerName")
+    	.then(function(response){
+    		$scope.customerName = response.data;
+    	});
     	$scope.buyCoupons = function () {
             var modalInstance = $uibModal.open({
             	controller: "buyCouponDialog",

@@ -1,9 +1,9 @@
 <div>
 	<h2>Customer Control Panel</h2>
-	<h3>Welcome {{username}}</h3>
+	<h3>Welcome {{customerName}}  <button type="button" class='btn btn-default' onclick="location.href='logout';">Logout!</button></h3>
 	<hr>
 	<button type="button" class='btn btn-primary' ng-click="buyCoupons()">Buy Coupons</button>
-	<button type="button" class='btn btn-success' ng-click="getCoupons()">Refresh</button>
+	<button type="button" class='btn btn-success' ng-click="getCoupons()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
 	<div ui-grid="customerCoupons"></div>
 	
 </div>

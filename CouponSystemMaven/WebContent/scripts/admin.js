@@ -3,6 +3,8 @@
 
     var adminController = function ($scope, $http, uiGridConstants ) {
 
+    	var view = this;
+    	
         $http.get("rest/admin/getAllCompanies")
             .then(function (response) {
                 $scope.companies.data = response.data;

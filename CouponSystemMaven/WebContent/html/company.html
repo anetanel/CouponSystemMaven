@@ -1,8 +1,12 @@
 <div>
-	<h1>Company</h1>
+	<h1>Company Control Panel</h1>
+	<h3>Welcome {{companyName}} <button type="button" class='btn btn-default' onclick="location.href='logout';">Logout!</button></h3>
+	
 	<hr>
 	<button type="button" class='btn btn-primary' ng-click="newCoupon()">New Coupon</button>
 	<button type="button" class='btn btn-danger' ng-click="deleteCoupon()" ng-disabled="!mySelectedRow">Delete Coupon</button>
-	<button type="button" class='btn btn-success' ng-click="getCoupons()">Refresh</button>
+	<button type="button" class='btn btn-success' ng-click="getCoupons()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
+	
+	
 	<div ui-grid="companyCoupons" ui-grid-selection></div>
 </div>

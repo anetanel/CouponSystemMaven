@@ -92,7 +92,7 @@ public class CustomerService {
 	
 	@GET
 	@Path("getCustomerName")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	public String getCustomerName() throws DAOException {
 		return getFacade().getCustName();
 	}
