@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//@WebFilter(urlPatterns = { "/LoginFilter" }, servletNames = { "Jersey REST Service" })
+@WebFilter(urlPatterns = { "/LoginFilter" }, servletNames = { "Jersey REST Service" })
 public class LoginFilter implements Filter {
 
     public LoginFilter() {

@@ -1,6 +1,6 @@
 (function () {
 
-    var app = angular.module("couponSystem", ['ngAnimate', 'ngSanitize','ui.grid', 'ngRoute', 'ui.bootstrap', 'ui.grid.selection']);
+    var app = angular.module("couponSystem", ['ngAnimate', 'ngSanitize','ui.grid', 'ngRoute', 'ui.bootstrap', 'ui.grid.selection', 'angular-confirm']);
 
     app.config(function ($routeProvider) {
         $routeProvider

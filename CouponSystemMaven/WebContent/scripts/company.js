@@ -1,7 +1,25 @@
 (function () {
     var app = angular.module("couponSystem");
 
-    var companyController = function ($scope, $http, uiGridConstants, $uibModal) {
+    var companyController = function ($scope, $http, uiGridConstants, $uibModal, $confirm) {
+
+        $scope.mySelectedRow = false;
+        $scope.deleteCoupon = function () {
+            // $scope.mySelectedRow = $scope.gridApi.selection.getSelectedRows()[0];
+            $confirm({
+                text: 'Are you sure you want to delete "' + $scope.mySelectedRow.CouponTitle + ' (ID: ' + $scope.mySelectedRow.CouponId + ')" ?',
+                title: 'Delete it',
+                ok: 'Yes',
+                cancel: 'No'
+            })
+                .then(function () {
+                    $http.delete("rest/company/deleteCoupon?couponId=" + $scope.mySelectedRow.CouponId)
+                        .then(function () {
+                            $scope.getCoupons();
+                        });
+
+                });
+        };
 
         $scope.newCoupon = function () {
             $scope.editCoupon(null, true);
@@ -12,14 +30,23 @@
                 controller: "couponDialog",
                 templateUrl: 'html/coupondialog.html',
                 resolve: {
-                    selectedRow: () => {if(row) return row.entity},
+                    selectedRow: () => {
+                        if (row) return row.entity
+                    },
                     isNew: () => isNew,
-                    getCoupons: () => getCoupons
-                    }
-                })
+                    getCoupons: () => $scope.getCoupons
+                }
+            })
         };
 
         $scope.companyCoupons = {
+            onRegisterApi: function (gridApi) {
+                $scope.gridApi = gridApi;
+                gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                    $scope.mySelectedRow = gridApi.selection.getSelectedRows()[0];
+                    // console.log(gridApi.selection.getSelectedRows()[0]);
+                });
+            },
             enableRowSelection: true,
             multiSelect: false,
             enableSelectAll: false,
@@ -43,14 +70,15 @@
             ]
         };
 
-        var getCoupons = function() {
+        $scope.getCoupons = function () {
             $http.get("rest/company/getAllCoupons")
                 .then(function (response) {
+                    console.log("in getCoupons");
                     $scope.companyCoupons.data = response.data;
                 });
         };
 
-        getCoupons();
+        $scope.getCoupons();
 
     }
 

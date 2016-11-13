@@ -19,9 +19,10 @@
 
         $scope.ok = function () {
             var coupon = {
+                "id": $scope.selectedRow.CouponId,
                 "title": $scope.selectedRow.CouponTitle,
-                "startDate": $scope.selectedRow.CouponStartDate.toISOString().split('T')[0],
-                "endDate": $scope.selectedRow.CouponEndDate.toISOString().split('T')[0],
+                "startDate": $scope.selectedRow.CouponStartDate,
+                "endDate": $scope.selectedRow.CouponEndDate,
                 "amount": $scope.selectedRow.CouponAmount,
                 "type": $scope.selectedRow.CouponType,
                 "message": $scope.selectedRow.CouponMessage,
@@ -30,9 +31,11 @@
             };
 
             if (isNew) {
-                //createCoupon(coupon);
+                createCoupon(coupon);
+            } else {
+                updateCoupon(coupon);
             }
-            //console.log(coupon.startDate.toISOString());
+
 
             $scope.selectedRow = null;
             $uibModalInstance.close();
@@ -47,6 +50,10 @@
         var createCoupon = function(coupon) {
             $http.post("rest/company/createCoupon", coupon);
         };
+
+        var updateCoupon = function(coupon) {
+            $http.post("rest/company/updateCoupon", coupon);
+        }
     };
     app.controller("couponDialog", couponDialog);
 }());

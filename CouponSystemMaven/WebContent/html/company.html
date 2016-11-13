@@ -1,5 +1,7 @@
 <div>
 	<h1>Company</h1>
-	<button type="button" class='btn btn-default' ng-click="newCoupon()">New Coupon</button>
+	<button type="button" class='btn btn-primary' ng-click="newCoupon()">New Coupon</button>
+	<button type="button" class='btn btn-danger' ng-click="deleteCoupon()" ng-disabled="!mySelectedRow">Delete Coupon</button>
+	<button type="button" class='btn btn-success' ng-click="getCoupons()">Refresh</button>
 	<div ui-grid="companyCoupons" ui-grid-selection></div>
 </div>

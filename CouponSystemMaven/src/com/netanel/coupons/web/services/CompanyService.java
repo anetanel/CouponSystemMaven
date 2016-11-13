@@ -89,7 +89,17 @@ public class CompanyService {
 	@POST
 	@Path("updateCoupon")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void updateCoupon(Coupon coupon) throws DAOException {
+	public void updateCoupon(Map<String, String> couponMap) throws DAOException {
+		Coupon coupon = new Coupon(Long.parseLong(couponMap.get("id")),
+									couponMap.get("title"),
+									LocalDate.parse(couponMap.get("startDate"), DateTimeFormatter.ISO_DATE),
+									LocalDate.parse(couponMap.get("endDate"), DateTimeFormatter.ISO_DATE),
+									Integer.parseInt(couponMap.get("amount")),
+									CouponType.valueOf(couponMap.get("type")),
+									couponMap.get("message"),
+									Double.parseDouble(couponMap.get("price")),
+									couponMap.get("image"));
+		System.out.println(coupon);
 		getFacade().updateCoupon(coupon);
 	}
 	
