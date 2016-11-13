@@ -2,34 +2,52 @@
 	<h4>Coupon Information</h4>
 </div>
 <div class="modal-body">
-	<div> ID: {{selectedRow.CouponId}}</div>
-	<div>Title: <input type="text" ng-model="selectedRow.CouponTitle"></div>
-
-	<div>Description: <input type="text" ng-model="selectedRow.CouponMessage"></div>
+	<div> 
+	<label>ID: {{selectedRow.CouponId}}</label>
+	</div>
+	<div>
+		<label for="title">Title:</label>
+		<input id="title" type="text" class="form-control" ng-model="selectedRow.CouponTitle">
+	</div>
 
 	<div>
-		Start Date:
-		<button type="button" class="btn btn-default" ng-click="startDateCollapsed = !startDateCollapsed">
+		<label for="message">Description:</label>
+		<input id="message" type="text" class="form-control" ng-model="selectedRow.CouponMessage">
+	</div>
+	
+
+	<div>
+		<label for="startDate">Start Date:</label>
+		<br>
+		<button id="startDate" type="button" class="btn btn-default" ng-click="startDateCollapsed = !startDateCollapsed">
 			{{selectedRow.CouponStartDate | date: 'yyyy-MM-dd'}}
 		</button>
 		<div uib-datepicker ng-model="selectedRow.CouponStartDate" uib-collapse="startDateCollapsed"></div>
 	</div>
 
 	<div>
-		End Date:
-		<button type="button" class="btn btn-default" ng-click="endDateCollapsed = !endDateCollapsed">
+		<label for="endDate">End Date:</label>
+		<br>
+		<button id="endDate" type="button" class="btn btn-default" ng-click="endDateCollapsed = !endDateCollapsed">
 			{{selectedRow.CouponEndDate | date: 'yyyy-MM-dd'}}
 		</button>
 		<div uib-datepicker ng-model="selectedRow.CouponEndDate" uib-collapse="endDateCollapsed"></div>
 	</div>
 
-	<div>No. of Coupons: <input type="number" ng-model="selectedRow.CouponAmount" min="0" max="9999"></div>
-
-	<div>Type:
-		<select ng-options="type for type in couponTypes" ng-model="selectedRow.CouponType"></select>
+	<div>
+		<label for="amount">No. of Coupons:</label>
+		<input id="amount" type="number" class="form-control" ng-model="selectedRow.CouponAmount" min="0" max="9999">
 	</div>
 
-	<div>Price: <input type="number" ng-model="selectedRow.CouponPrice" min="0" max="9999"></div>
+	<div>
+		<label for="couponType">Type:</label>
+		<select id="couponType" class="form-control" ng-options="type for type in couponTypes" ng-model="selectedRow.CouponType"></select>
+	</div>
+
+	<div>
+		<label for="price">Price:</label>
+		<input id="price" class="form-control" type="number" ng-model="selectedRow.CouponPrice" min="0" max="9999">
+	</div>
 
 	<div>
 		<form action="rest/upload" method="post" enctype="multipart/form-data">

@@ -1,14 +1,22 @@
 <div>
-	<h1>Admin</h1>
+	<h2>Admin Control Panel</h2>
 	<h3>Welcome admin <button type="button" class='btn btn-default' onclick="location.href='logout';">Logout!</button></h3>
 	<hr>
 	
 	<uib-tabset active="active">
 		<uib-tab index="0" heading="Companies" select="view.tab1Shown = !view.tab1Shown" deselect="view.tab1Shown = !view.tab1Shown">
-			<div ui-grid="companies" class="grid" ng-if="view.tab1Shown"></div>
+		<br>
+		<button type="button" class='btn btn-primary' ng-click="newClient('Company')">New Company</button>
+	<button type="button" class='btn btn-danger' ng-click="deleteCoupon()" ng-disabled="!mySelectedRow">Delete Company</button>
+	<hr>
+			<div ui-grid="companies" class="grid" ng-if="view.tab1Shown" ui-grid-selection></div>
 		</uib-tab>
 		<uib-tab index="1" heading="Customers" select="view.tab2Shown = !view.tab2Shown" deselect="view.tab2Shown = !view.tab2Shown">
-			<div ui-grid="customers" class="grid" ng-if="view.tab2Shown"></div>
+		<br>
+		<button type="button" class='btn btn-primary' ng-click="newClient('Customer')">New Customer</button>
+	<button type="button" class='btn btn-danger' ng-click="deleteCoupon()" ng-disabled="!mySelectedRow">Delete Customer</button>
+	<hr>
+			<div ui-grid="customers" class="grid" ng-if="view.tab2Shown" ui-grid-selection></div>
 		</uib-tab>
 
 	</uib-tabset>
