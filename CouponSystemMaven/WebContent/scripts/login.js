@@ -8,12 +8,12 @@
             
             if ($scope.result.login) {
             	$uibModal.open(
-                        {template: 'Welcome ' + $scope.username}
+                        {template: '<div style="text-align:center;margin-bottom:0px;" class="alert alert-success"><strong>Login Successful!</strong><br> Welcome, '+ $scope.username +'</div>'}
                     )
                 $window.location.href = "#/" + $scope.clientType.toLowerCase()
             } else {
             	$uibModal.open(
-                        {template: 'Login information is incorrect!'}
+                        {template: '<div style="text-align:center;margin-bottom:0px;" class="alert alert-warning"><strong>Login Failed!</strong><br> Login information is incorrect.</div>'}
                     )
             }
         };
