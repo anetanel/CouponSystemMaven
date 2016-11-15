@@ -48,7 +48,6 @@
                 $scope.gridApi = gridApi;
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                     $scope.mySelectedRow = gridApi.selection.getSelectedRows()[0];
-                    // console.log(gridApi.selection.getSelectedRows()[0]);
                 });
             },
             enableRowSelection: true,

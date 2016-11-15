@@ -1,18 +1,19 @@
 <div class="modal-header">
 	<h4>Coupon Information</h4>
 </div>
+<form name="couponDialog" ng-submit="ok()">
 <div class="modal-body">
-	<div> 
+	<div ng-show="selectedRow.CouponId"> 
 	<label>ID: {{selectedRow.CouponId}}</label>
 	</div>
 	<div>
 		<label for="title">Title:</label>
-		<input id="title" type="text" class="form-control" ng-model="selectedRow.CouponTitle">
+		<input id="title" type="text" class="form-control" ng-model="selectedRow.CouponTitle" required>
 	</div>
 
 	<div>
 		<label for="message">Description:</label>
-		<input id="message" type="text" class="form-control" ng-model="selectedRow.CouponMessage">
+		<input id="message" type="text" class="form-control" ng-model="selectedRow.CouponMessage"  required>
 	</div>
 	
 
@@ -49,16 +50,17 @@
 		<input id="price" class="form-control" type="number" ng-model="selectedRow.CouponPrice" min="0" max="9999">
 	</div>
 
-	<div>
-		<form action="rest/upload" method="post" enctype="multipart/form-data">
-			<input type="file" name="file" accept="image/*" class="btn btn-default">
-			<input type="submit" value="Upload Image" class="btn btn-default"/>
-		</form>
-	</div>
+<!-- 	<div> -->
+<!-- 		<form action="rest/upload" method="post" enctype="multipart/form-data"> -->
+<!-- 			<input type="file" name="file" accept="image/*" class="btn btn-default"> -->
+<!-- 			<input type="submit" value="Upload Image" class="btn btn-default"/> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
 
 	<div>Image:</div>
 </div>
 <div class="modal-footer">
-	<button class="btn btn-primary btnCustom" ng-click="ok()">OK!</button>
+	<button type="submit" class="btn btn-primary btnCustom">OK</button>
 	<button class="btn btn-primary btnCustom" ng-click="cancel()">Cancel</button>
 </div>
+</form>

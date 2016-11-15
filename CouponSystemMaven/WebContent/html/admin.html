@@ -7,14 +7,16 @@
 		<uib-tab index="0" heading="Companies" select="view.tab1Shown = !view.tab1Shown" deselect="view.tab1Shown = !view.tab1Shown">
 		<br>
 		<button type="button" class='btn btn-primary' ng-click="newClient('Company')">New Company</button>
-	<button type="button" class='btn btn-danger' ng-click="deleteCoupon()" ng-disabled="!mySelectedRow">Delete Company</button>
+	<button type="button" class='btn btn-danger' ng-click="deleteClient('Company')" ng-disabled="!selectedCompanyRow">Delete Company {{selectedCompanyRow.ClientName}}</button>
+	<button type="button" class='btn btn-success' ng-click="getAllCompanies()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
 	<hr>
 			<div ui-grid="companies" class="grid" ng-if="view.tab1Shown" ui-grid-selection></div>
 		</uib-tab>
 		<uib-tab index="1" heading="Customers" select="view.tab2Shown = !view.tab2Shown" deselect="view.tab2Shown = !view.tab2Shown">
 		<br>
 		<button type="button" class='btn btn-primary' ng-click="newClient('Customer')">New Customer</button>
-	<button type="button" class='btn btn-danger' ng-click="deleteCoupon()" ng-disabled="!mySelectedRow">Delete Customer</button>
+	<button type="button" class='btn btn-danger' ng-click="deleteClient('Customer')" ng-disabled="!selectedCustomerRow">Delete Customer {{selectedCustomerRow.ClientName}}</button>
+	<button type="button" class='btn btn-success' ng-click="getAllCustomers()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
 	<hr>
 			<div ui-grid="customers" class="grid" ng-if="view.tab2Shown" ui-grid-selection></div>
 		</uib-tab>

@@ -58,7 +58,7 @@ public class AdminService {
 	@DELETE
 	@Path("deleteCompany")
 	//TODO: deal with IO exception
-	public void deleteCompany(@QueryParam("compId") long compId) throws DAOException, IOException {
+	public void deleteCompany(@QueryParam("id") long compId) throws DAOException, IOException {
 		getFacade().deleteCompany(getCompany(compId));
 	}
 	
@@ -66,11 +66,14 @@ public class AdminService {
 	@Path("updateCompany")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void updateCompanyDetails(Map<String, String> companyMap) throws DAOException {
-		Company company = new Company(Long.parseLong(companyMap.get("id")),
-				companyMap.get("name"), 
-				new Password(companyMap.get("password").toCharArray()), 
-				companyMap.get("email"),
-				null);
+		Company company = getFacade().getCompany(Long.parseLong(companyMap.get("id")));
+		company.setName(companyMap.get("name"));
+		company.setEmail(companyMap.get("email"));
+		
+		if (companyMap.get("password") != null) {
+			company.setPassword(companyMap.get("password").toCharArray());
+		}
+		
 		getFacade().updateCompanyDetails(company);
 	}
 	
@@ -129,7 +132,7 @@ public class AdminService {
 	
 	@DELETE
 	@Path("deleteCustomer")
-	public void deleteCustomer(@QueryParam("custId") long custId) throws DAOException {
+	public void deleteCustomer(@QueryParam("id") long custId) throws DAOException {
 		getFacade().deleteCustomer(getCustomer(custId));
 	}
 	
@@ -137,10 +140,13 @@ public class AdminService {
 	@Path("updateCustomer")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void updateCustomerDetails(Map<String, String> customerMap) throws DAOException {
-		Customer customer = new Customer(Long.parseLong(customerMap.get("id")),
-				customerMap.get("name"), 
-				new Password(customerMap.get("password").toCharArray()), 
-				null);
+		Customer customer = getFacade().getCustomer(Long.parseLong(customerMap.get("id")));
+		customer.setName(customerMap.get("name"));
+		
+		if (customerMap.get("password") != null) {
+			customer.setPassword(customerMap.get("password").toCharArray());
+		}
+		
 		getFacade().updateCustomerDetails(customer);
 	}
 	
