@@ -26,14 +26,16 @@
     	
     	$http.get("rest/customer/getAllCoupons")
                 .then(function (response) {
-                    console.log("in allCoupons");
                     $scope.allCoupons.data = response.data;
                 });
 
 
-    	var buyCoupon = function(couponId) {
-    		$http.post("rest/customer/buyCouponById?couponId=" + couponId);
-    	};
+		    	var buyCoupon = function(couponId) {
+			$http.post("rest/customer/buyCouponById?couponId=" + couponId)
+					.then(null , function(response) {
+						console.log(response.data.errorMessage)
+					})
+		};
     	
         $scope.ok = function () {
 

@@ -39,7 +39,6 @@
         $scope.getCoupons= function() {
         	$http.get("rest/customer/getMyCoupons")
             	.then(function (response) {
-            		console.log("in getCoupons");
             		$scope.customerCoupons.data = response.data;
             	});
         };
