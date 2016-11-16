@@ -26,14 +26,14 @@ public class Test {
 	public static void main(String[] args) throws Exception {
 
 		// Initialize DB
-		try (Connection con = DB.getConnection()) {
-			con.createStatement().executeUpdate("DELETE FROM Company");
-			con.createStatement().executeUpdate("DELETE FROM Customer");
-			con.createStatement().executeUpdate("DELETE FROM Coupon");
-			con.createStatement().executeUpdate("DELETE FROM Company_Coupon");
-			con.createStatement().executeUpdate("DELETE FROM Customer_Coupon");
-			con.createStatement().executeUpdate("UPDATE sqlite_sequence set seq=0");
-		}
+//		try (Connection con = DB.getConnection()) {
+//			con.createStatement().executeUpdate("DELETE FROM Company");
+//			con.createStatement().executeUpdate("DELETE FROM Customer");
+//			con.createStatement().executeUpdate("DELETE FROM Coupon");
+//			con.createStatement().executeUpdate("DELETE FROM Company_Coupon");
+//			con.createStatement().executeUpdate("DELETE FROM Customer_Coupon");
+//			con.createStatement().executeUpdate("UPDATE sqlite_sequence set seq=0");
+//		}
 
 		/////////////////////////////////////////////
 

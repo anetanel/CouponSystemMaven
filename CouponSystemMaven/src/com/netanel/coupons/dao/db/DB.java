@@ -27,8 +27,10 @@ class DB {
 	private static void startPool() {
 		cpds = new ComboPooledDataSource();
 		try {
-			cpds.setDriverClass( "org.sqlite.JDBC" );
-			cpds.setJdbcUrl( "jdbc:sqlite:c:\\coupondb\\CouponsDB.db" );
+//			cpds.setDriverClass( "org.sqlite.JDBC" );
+//			cpds.setJdbcUrl( "jdbc:sqlite:c:\\coupondb\\CouponsDB.db" );
+			cpds.setDriverClass( "org.apache.derby.jdbc.EmbeddedDriver" );
+			cpds.setJdbcUrl( "jdbc:derby:c:\\coupondb\\DerbyCouponDb.db" );
 			cpds.setMaxStatements( 180 );
 			//cpds.setMaxPoolSize(1);
 		} catch (PropertyVetoException e) {
