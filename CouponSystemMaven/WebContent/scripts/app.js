@@ -2,8 +2,8 @@
 
     var app = angular.module("couponSystem", ['ngAnimate', 'ngSanitize','ui.grid', 'ngRoute', 'ui.bootstrap', 'ui.grid.selection', 'angular-confirm', 'ui.grid.autoResize']);
         
-    app.config(function ($routeProvider) {
-        $routeProvider
+    app.config(function ($routeProvider, $httpProvider) {
+    	$routeProvider
             .when("/login", {
                 templateUrl: "html/login.html",
                 controller: "loginController"
@@ -20,7 +20,8 @@
                 templateUrl: "html/admin.html",
                 controller: "adminController"
             })
-            .otherwise({redirectTo: "/login"})
+            .otherwise({redirectTo: "/login"});
+        $httpProvider.interceptors.push('errorInterceptor');
     });
 
 }());

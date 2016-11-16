@@ -32,8 +32,10 @@
 
 		    	var buyCoupon = function(couponId) {
 			$http.post("rest/customer/buyCouponById?couponId=" + couponId)
-					.then(null , function(response) {
-						console.log(response.data.errorMessage)
+					.then(function(response) {
+						console.log("bought " + couponId);
+					} , function(response) {
+						console.log("did not buy " + couponId);
 					})
 		};
     	

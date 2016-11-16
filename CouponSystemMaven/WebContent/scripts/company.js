@@ -7,7 +7,6 @@
     	.then(function(response){
     		$scope.companyName = response.data;
     	});
-    	console.log($scope.companyName);
         $scope.mySelectedRow = false;
         $scope.deleteCoupon = function () {
             $confirm({
@@ -76,7 +75,6 @@
         $scope.getCoupons = function () {
             $http.get("rest/company/getAllCoupons")
                 .then(function (response) {
-                    console.log("in getCoupons");
                     $scope.companyCoupons.data = response.data;
                 });
         };

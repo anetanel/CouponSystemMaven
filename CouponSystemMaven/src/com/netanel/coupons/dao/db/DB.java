@@ -29,7 +29,8 @@ class DB {
 		try {
 			cpds.setDriverClass( "org.sqlite.JDBC" );
 			cpds.setJdbcUrl( "jdbc:sqlite:c:\\coupondb\\CouponsDB.db" );
-			cpds.setMaxStatements( 180 ); 
+			cpds.setMaxStatements( 180 );
+			//cpds.setMaxPoolSize(1);
 		} catch (PropertyVetoException e) {
 			System.out.println("ERROR: Connection Pool error:");
 			System.out.println(e.getMessage());
