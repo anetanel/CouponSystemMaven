@@ -37,7 +37,7 @@ public class CouponDbDAO implements CouponDAO {
 			// SQL command:
 			String sqlCmdStr = "INSERT INTO Coupon (TITLE, START_DATE, END_DATE, AMOUNT,"
 								+ " TYPE, MESSAGE, PRICE, IMAGE) VALUES(?,?,?,?,?,?,?,?)";
-			PreparedStatement stat = con.prepareStatement (sqlCmdStr);
+			PreparedStatement stat = con.prepareStatement (sqlCmdStr, Statement.RETURN_GENERATED_KEYS);
 			stat.setString(1, coupon.getTitle());
 			stat.setDate(2, Date.valueOf(coupon.getStartDate()));
 			stat.setDate(3, Date.valueOf(coupon.getEndDate()));

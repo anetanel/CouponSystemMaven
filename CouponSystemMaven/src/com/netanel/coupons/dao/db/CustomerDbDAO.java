@@ -38,7 +38,7 @@ public class CustomerDbDAO implements CustomerDAO {
 			Map<String, String> hashAndSalt = customer.getPassword().getHashAndSalt();
 			// SQL command:
 			String sqlCmdStr = "INSERT INTO Customer (CUST_NAME, PASSWORD, SALT) VALUES(?,?,?)";
-			PreparedStatement stat = con.prepareStatement(sqlCmdStr);
+			PreparedStatement stat = con.prepareStatement(sqlCmdStr, Statement.RETURN_GENERATED_KEYS);
 			stat.setString(1, customer.getName());
 			stat.setString(2, hashAndSalt.get("hash"));
 			stat.setString(3, hashAndSalt.get("salt"));

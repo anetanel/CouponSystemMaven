@@ -13,7 +13,6 @@
     		} else if (client == 'Customer') {
     			$scope.mySelectedRow = $scope.selectedCustomerRow;
     		}
-    		console.log($scope.mySelectedRow);
             $confirm({
                 text: 'Are you sure you want to delete "' + $scope.mySelectedRow.ClientName + ' (ID: ' + $scope.mySelectedRow.ClientId + ')" ?',
                 title: 'Delete '+ client,
@@ -46,8 +45,11 @@
             });
         };
 
-        $scope.getAllCompanies();
-        $scope.getAllCustomers();
+        $scope.getAllClients = function () {
+        	$scope.getAllCompanies();
+            $scope.getAllCustomers();
+        };
+        
 
         $scope.newClient = function (clientType) {
             $scope.editClient(null, clientType, 'New');
@@ -62,7 +64,8 @@
                         if (row) return row.entity
                     },
                     isNew: () => isNew,
-                    clientType: () => clientType
+                    clientType: () => clientType,
+                    getAllClients: () => $scope.getAllClients
                 }
             })
         };
@@ -110,8 +113,11 @@
             ]
         };
         
+        //
+        // Load Companies and Customers details
+        //
 
-
+        $scope.getAllClients();
 
     };
 

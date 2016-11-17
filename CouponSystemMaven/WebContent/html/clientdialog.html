@@ -15,7 +15,7 @@
 	<br>
 	<div ng-show="clientType == 'Company'">
 		<label for="email">Email:</label>
-		<input id="email" type="text" class="form-control" ng-model="selectedRow.CompanyEmail" required>
+		<input id="email" type="text" class="form-control" ng-model="selectedRow.CompanyEmail" ng-required="clientType == 'Company'">
 	</div>
 	<br>
 	<div>

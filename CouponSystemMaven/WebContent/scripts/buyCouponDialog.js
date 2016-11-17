@@ -30,13 +30,16 @@
                 });
 
 
-		    	var buyCoupon = function(couponId) {
+    	var success = function() {
+    		$uibModalInstance.close();
+            getCoupons();
+    	};
+    	
+		var buyCoupon = function(couponId) {
 			$http.post("rest/customer/buyCouponById?couponId=" + couponId)
 					.then(function(response) {
-						console.log("bought " + couponId);
-					} , function(response) {
-						console.log("did not buy " + couponId);
-					})
+						success();
+					});
 		};
     	
         $scope.ok = function () {
@@ -48,8 +51,6 @@
         		buyCoupon(coupon.CouponId);
         	});
         	
-            $uibModalInstance.close();
-            getCoupons();
         };
 
         $scope.cancel = function () {

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.netanel.coupons.exception.DaoSQLException;
@@ -19,18 +20,22 @@ class DB {
 	//
 	private static ComboPooledDataSource cpds = null;
 	
+	
+	
 	//
 	// Functions
 	//
 	
 	// Start connection pool
 	private static void startPool() {
+		Properties p = System.getProperties();
+		p.setProperty("derby.language.sequence.preallocator", "1");
 		cpds = new ComboPooledDataSource();
 		try {
 //			cpds.setDriverClass( "org.sqlite.JDBC" );
 //			cpds.setJdbcUrl( "jdbc:sqlite:c:\\coupondb\\CouponsDB.db" );
 			cpds.setDriverClass( "org.apache.derby.jdbc.EmbeddedDriver" );
-			cpds.setJdbcUrl( "jdbc:derby:c:\\coupondb\\DerbyCouponDb.db" );
+			cpds.setJdbcUrl( "jdbc:derby:C:\\coupondb\\DerbyCouponDb.db" );
 			cpds.setMaxStatements( 180 );
 			//cpds.setMaxPoolSize(1);
 		} catch (PropertyVetoException e) {

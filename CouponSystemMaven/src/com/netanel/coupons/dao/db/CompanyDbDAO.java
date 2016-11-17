@@ -39,7 +39,7 @@ public class CompanyDbDAO implements CompanyDAO {
 			Map<String, String> hashAndSalt = company.getPassword().getHashAndSalt();
 			// SQL command:
 			String sqlCmdStr = "INSERT INTO Company (COMP_NAME, PASSWORD, EMAIL, SALT) VALUES(?,?,?,?)";
-			PreparedStatement stat = con.prepareStatement(sqlCmdStr);
+			PreparedStatement stat = con.prepareStatement(sqlCmdStr,Statement.RETURN_GENERATED_KEYS);
 			stat.setString(1, company.getName());
 			stat.setString(2, hashAndSalt.get("hash"));
 			stat.setString(3, company.getEmail());

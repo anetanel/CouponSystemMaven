@@ -1,14 +1,13 @@
 (function () {
     var app = angular.module("couponSystem");
 
-    var clientDialog = function ($scope, $http, $uibModalInstance, isNew, clientType, selectedRow) {
+    var clientDialog = function ($scope, $http, $uibModalInstance, isNew, clientType, selectedRow, getAllClients, $uibModal) {
     	$scope.selectedRow = selectedRow;
     	$scope.isNew = isNew;
     	$scope.clientType = clientType;
     	$scope.passwordChecked = false;
     	$scope.password = null;
     	
-    	console.log(selectedRow);
         $scope.ok = function () {
         	var client = {
         		"type": $scope.clientType,
@@ -28,8 +27,6 @@
         	} else {
         		updateClient(client);
         	}
-            $uibModalInstance.close();
-            console.log(client);
         };
 
         $scope.cancel = function () {
@@ -37,12 +34,23 @@
             $uibModalInstance.dismiss('cancel');
         };
         
+        var success = function() {
+        	$uibModalInstance.close();
+        	getAllClients();
+        }
+        
         var createClient = function(client) {
-        	$http.post("rest/admin/create" + $scope.clientType, client);
+        	$http.post("rest/admin/create" + $scope.clientType, client)
+        		.then(function(res) {
+        			success();
+        		});
         };
         
         var updateClient = function(client) {
-        	$http.post("rest/admin/update" + $scope.clientType, client);
+        	$http.post("rest/admin/update" + $scope.clientType, client)
+        		.then(function(res) {
+            		success();
+            	});
         };
 
     };

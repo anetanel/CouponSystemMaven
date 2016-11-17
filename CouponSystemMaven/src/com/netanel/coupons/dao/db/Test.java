@@ -26,14 +26,17 @@ public class Test {
 	public static void main(String[] args) throws Exception {
 
 		// Initialize DB
-//		try (Connection con = DB.getConnection()) {
-//			con.createStatement().executeUpdate("DELETE FROM Company");
-//			con.createStatement().executeUpdate("DELETE FROM Customer");
-//			con.createStatement().executeUpdate("DELETE FROM Coupon");
-//			con.createStatement().executeUpdate("DELETE FROM Company_Coupon");
-//			con.createStatement().executeUpdate("DELETE FROM Customer_Coupon");
-//			con.createStatement().executeUpdate("UPDATE sqlite_sequence set seq=0");
-//		}
+		try (Connection con = DB.getConnection()) {
+			con.createStatement().executeUpdate("DELETE FROM Company");
+			con.createStatement().executeUpdate("DELETE FROM Customer");
+			con.createStatement().executeUpdate("DELETE FROM Coupon");
+			con.createStatement().executeUpdate("DELETE FROM Company_Coupon");
+			con.createStatement().executeUpdate("DELETE FROM Customer_Coupon");
+			con.createStatement().executeUpdate("ALTER TABLE COMPANY alter COLUMN ID RESTART WITH 1");
+			con.createStatement().executeUpdate("ALTER TABLE CUSTOMER alter COLUMN ID RESTART WITH 1");
+			con.createStatement().executeUpdate("ALTER TABLE COUPON alter COLUMN ID RESTART WITH 1");
+			//con.createStatement().executeUpdate("UPDATE sqlite_sequence set seq=0");
+		}
 
 		/////////////////////////////////////////////
 
@@ -146,5 +149,8 @@ public class Test {
 		dana.buyCoupon("EMC Coupon 2");
 		dana.buyCoupon("EMC Coupon 3");
 
+		
+		System.out.println(admin.getAllCompanies());
+		System.out.println(admin.getAllCustomers());
 	}
 }
