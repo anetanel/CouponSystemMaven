@@ -63,7 +63,7 @@
                 {name: 'CouponAmount', type: 'number'},
                 {name: 'CouponType'},
                 {name: 'CouponMessage'},
-                {name: 'CouponPrice', type: 'numberStr'},
+                {name: 'CouponPrice', type: 'number', cellFilter: 'number: 2'},
                 {
                     name: 'CouponImagePath',
                     displayName: 'Image',
