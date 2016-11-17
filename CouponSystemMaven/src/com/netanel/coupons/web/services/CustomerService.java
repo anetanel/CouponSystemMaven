@@ -110,7 +110,7 @@ public class CustomerService {
 		if (request.getSession().getAttribute(FACADE) instanceof CustomerFacade) {
 			return (CustomerFacade) request.getSession().getAttribute(FACADE);
 		} else {
-			throw new DAOException("Could not find an Admin login session");
+			throw new DAOException("Could not find a Customer login session");
 		}
 	}
 	

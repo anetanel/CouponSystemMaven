@@ -20,34 +20,39 @@
 	<div>
 		<label for="startDate">Start Date:</label>
 		<br>
-		<button id="startDate" type="button" class="btn btn-default" ng-click="startDateCollapsed = !startDateCollapsed">
-			{{selectedRow.CouponStartDate | date: 'yyyy-MM-dd'}}
-		</button>
+<!-- 		<button id="startDate" type="button" class="btn btn-default" ng-click="startDateCollapsed = !startDateCollapsed"> -->
+<!-- 			{{selectedRow.CouponStartDate | date: 'yyyy-MM-dd'}} -->
+<!-- 		</button> -->
+<!-- 		<input type="button" class="btn btn-default" ng-click="startDateCollapsed = !startDateCollapsed" value="{{selectedRow.CouponStartDate | date: 'yyyy-MM-dd'}}" required="required"> -->
+			<input id="startDate" class="btn btn-default" type="text"  ng-click="startDateCollapsed = !startDateCollapsed" value="{{selectedRow.CouponStartDate | date: 'yyyy-MM-dd'}}" required="required">
 		<div uib-datepicker ng-model="selectedRow.CouponStartDate" uib-collapse="startDateCollapsed"></div>
 	</div>
 
 	<div>
 		<label for="endDate">End Date:</label>
 		<br>
-		<button id="endDate" type="button" class="btn btn-default" ng-click="endDateCollapsed = !endDateCollapsed">
-			{{selectedRow.CouponEndDate | date: 'yyyy-MM-dd'}}
-		</button>
+<!-- 		<button id="endDate" type="button" class="btn btn-default" ng-click="endDateCollapsed = !endDateCollapsed"> -->
+<!-- 			{{selectedRow.CouponEndDate | date: 'yyyy-MM-dd'}} -->
+<!-- 		</button> -->
+			<input id="endDate" class="btn btn-default" type="text"  ng-click="endDateCollapsed = !endDateCollapsed" value="{{selectedRow.CouponEndDate | date: 'yyyy-MM-dd'}}" required="required">
 		<div uib-datepicker ng-model="selectedRow.CouponEndDate" uib-collapse="endDateCollapsed"></div>
 	</div>
 
 	<div>
 		<label for="amount">No. of Coupons:</label>
-		<input id="amount" type="number" class="form-control" ng-model="selectedRow.CouponAmount" min="0" max="9999">
+		<input id="amount" type="number" class="form-control" ng-model="selectedRow.CouponAmount" min="0" max="9999" required>
 	</div>
 
 	<div>
 		<label for="couponType">Type:</label>
-		<select id="couponType" class="form-control" ng-options="type for type in couponTypes" ng-model="selectedRow.CouponType"></select>
+		<select id="couponType" class="form-control" ng-options="type for type in couponTypes" ng-model="selectedRow.CouponType" required="required">
+		<option selected disabled value="">-Select-</option>
+		</select>
 	</div>
 
 	<div>
 		<label for="price">Price:</label>
-		<input id="price" class="form-control" type="number" ng-model="selectedRow.CouponPrice" min="0" max="9999">
+		<input id="price" class="form-control" type="number" ng-model="selectedRow.CouponPrice" step="any" min="0" max="9999" required>
 	</div>
 
 <!-- 	<div> -->

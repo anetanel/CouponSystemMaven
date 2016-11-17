@@ -1,7 +1,7 @@
 (function () {
 
     var app = angular.module("couponSystem", ['ngAnimate', 'ngSanitize','ui.grid', 'ngRoute', 'ui.bootstrap', 'ui.grid.selection', 'angular-confirm', 'ui.grid.autoResize']);
-        
+    
     app.config(function ($routeProvider, $httpProvider) {
     	$routeProvider
             .when("/login", {

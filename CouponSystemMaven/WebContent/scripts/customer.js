@@ -24,7 +24,7 @@
                 {name: 'CouponTitle'},
                 {name: 'CouponStartDate', type: 'date'},
                 {name: 'CouponEndDate', type: 'date'},
-                {name: 'CouponAmount', type: 'number'},
+                //{name: 'CouponAmount', type: 'number'},
                 {name: 'CouponType'},
                 {name: 'CouponMessage'},
                 {name: 'CouponPrice', type: 'number'},

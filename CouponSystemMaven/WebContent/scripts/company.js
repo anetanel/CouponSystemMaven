@@ -63,7 +63,7 @@
                 {name: 'CouponAmount', type: 'number'},
                 {name: 'CouponType'},
                 {name: 'CouponMessage'},
-                {name: 'CouponPrice', type: 'number', type: 'number'},
+                {name: 'CouponPrice', type: 'numberStr'},
                 {
                     name: 'CouponImagePath',
                     displayName: 'Image',

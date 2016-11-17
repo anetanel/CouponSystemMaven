@@ -47,7 +47,6 @@
         	var coupons = $scope.gridApi.selection.getSelectedRows();
         	
         	coupons.forEach(function (coupon) {
-        		console.log(coupon.CouponId);
         		buyCoupon(coupon.CouponId);
         	});
         	

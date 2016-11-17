@@ -1,6 +1,8 @@
 package com.netanel.coupons.web.filter;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -27,18 +29,15 @@ public class LoginFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		String url = req.getContextPath() + "/index.html";
+		//String url = req.getContextPath() + "/index.html";
 		HttpSession session = req.getSession(false);
 		
+		
 		if (session == null) {
-			System.out.println("no session!");
-			System.out.println("redirect to " + url);
-			res.sendRedirect(url);
+			filterOutput(res, "No Session Found! <br> Redirecting to Login Page.");
 			return;
 		} else if (session.getAttribute("FACADE") == null){
-			System.out.println("no facade in session!");
-			System.out.println("redirect to " + url);
-			res.sendRedirect(url);
+			filterOutput(res, "No Facade in Session! <br> Redirecting to Login Page.");
 			return;
 		} else {
 			
@@ -49,6 +48,15 @@ public class LoginFilter implements Filter {
 		chain.doFilter(request, response);
 	}
 
+	private void filterOutput(HttpServletResponse res, String str) throws IOException {
+		res.setContentType("application/json");
+		PrintWriter out = res.getWriter();
+		
+		System.out.println("str");
+		
+		res.setStatus(500);
+		out.print("{\"filter\": \""+ str +"\", \"redirect\": true}");
+	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
 	}
