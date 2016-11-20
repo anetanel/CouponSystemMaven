@@ -3,10 +3,10 @@
 
     var companyController = function ($scope, $http, uiGridConstants, $uibModal, $confirm) {
 
-    	$http.get("rest/company/getCompanyName")
-    	.then(function(response){
-    		$scope.companyName = response.data;
-    	});
+        $http.get("rest/company/getCompanyName")
+            .then(function (response) {
+                $scope.companyName = response.data;
+            });
         $scope.mySelectedRow = false;
         $scope.deleteCoupon = function () {
             $confirm({
@@ -40,6 +40,10 @@
                     getCoupons: () => $scope.getCoupons
                 }
             })
+        };
+
+        $scope.editCouponButton = function () {
+            $scope.editCoupon({entity: $scope.mySelectedRow});
         };
 
         $scope.companyCoupons = {

@@ -25,7 +25,6 @@ public class LoginFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		//TODO: remove system outs
-		System.out.println("Filtered!");
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
@@ -52,7 +51,7 @@ public class LoginFilter implements Filter {
 		res.setContentType("application/json");
 		PrintWriter out = res.getWriter();
 		
-		System.out.println("str");
+		System.out.println(str);
 		
 		res.setStatus(500);
 		out.print("{\"filter\": \""+ str +"\", \"redirect\": true}");

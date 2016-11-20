@@ -47,11 +47,11 @@
             $uibModalInstance.dismiss('cancel');
         };
 
-        var createCoupon = function(coupon) {
+        var createCoupon = function (coupon) {
             $http.post("rest/company/createCoupon", coupon);
         };
 
-        var updateCoupon = function(coupon) {
+        var updateCoupon = function (coupon) {
             $http.post("rest/company/updateCoupon", coupon);
         }
     };
