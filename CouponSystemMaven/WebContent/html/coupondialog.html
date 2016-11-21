@@ -37,19 +37,21 @@
 
     <div class="row">
       <div class="col-md-6">
+      <label for="startDate">Start Date:</label>
         <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" ng-model="selectedRow.CouponStartDate" is-open="popup1.opened" ng-required="true" close-text="Close" />
+          <input popover-enable="invalidStartDate" popover-is-open="invalidStartDate" popover-trigger="none" uib-popover="Enter valid date!" id="startDate" type="text" class="form-control" uib-datepicker-popup ng-model="selectedRow.CouponStartDate" is-open="startDateOpen" required/>
           <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="button" class="btn btn-default" ng-click="startDateOpen = !startDateOpen"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </p>
       </div>
 
       <div class="col-md-6">
+      <label for="endDate">End Date:</label>
         <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+          <input popover-enable="invalidEndDate" popover-is-open="invalidEndDate" popover-trigger="none" uib-popover="Enter valid date!" id="endDate" type="text" class="form-control" uib-datepicker-popup ng-model="selectedRow.CouponEndDate" is-open="endDateOpen" required/>
           <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="button" class="btn btn-default" ng-click="endDateOpen = !endDateOpen"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </p>
       </div>

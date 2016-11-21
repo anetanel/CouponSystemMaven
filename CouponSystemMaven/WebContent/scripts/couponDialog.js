@@ -4,11 +4,13 @@
     var couponDialog = function ($scope, $http, $uibModalInstance, selectedRow, isNew, getCoupons) {
         if (selectedRow) {
             $scope.selectedRow = selectedRow;
+            $scope.selectedRow.CouponStartDate = new Date($scope.selectedRow.CouponStartDate);
+            $scope.selectedRow.CouponEndDate = new Date($scope.selectedRow.CouponEndDate);
         } else {
             $scope.selectedRow = {};
         }
-        $scope.startDateCollapsed = true;
-        $scope.endDateCollapsed = true;
+        $scope.startDateOpen = false;
+        $scope.endDateOpen = false;
 
         $scope.couponTypes = {};
         $http.get("rest/general/getCouponTypes")
@@ -18,6 +20,16 @@
 
 
         $scope.ok = function () {
+        	$scope.invalidStartDate = false;
+        	$scope.invalidEndDate = false;
+        	if (!($scope.selectedRow.CouponStartDate instanceof Date)) {
+        		$scope.invalidStartDate = true;
+        		return;
+        	}
+        	if (!($scope.selectedRow.CouponEndDate instanceof Date)) {
+        		$scope.invalidEndDate = true;
+        		return;
+        	}
             var coupon = {
                 "id": $scope.selectedRow.CouponId,
                 "title": $scope.selectedRow.CouponTitle,
@@ -36,10 +48,6 @@
                 updateCoupon(coupon);
             }
 
-
-            $scope.selectedRow = null;
-            $uibModalInstance.close();
-            getCoupons();
         };
 
         $scope.cancel = function () {
@@ -47,13 +55,26 @@
             $uibModalInstance.dismiss('cancel');
         };
 
+        var success = function () {
+            $uibModalInstance.close();
+            $scope.selectedRow = null;
+            getCoupons();
+        };
+        
         var createCoupon = function (coupon) {
-            $http.post("rest/company/createCoupon", coupon);
+            $http.post("rest/company/createCoupon", coupon)
+            	.then(function (response) {
+                    success();
+                });
         };
 
         var updateCoupon = function (coupon) {
-            $http.post("rest/company/updateCoupon", coupon);
-        }
+            $http.post("rest/company/updateCoupon", coupon)
+        		.then(function (response) {
+        			success();
+        		});
+        };
+    
     };
     app.controller("couponDialog", couponDialog);
 }());
