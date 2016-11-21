@@ -170,7 +170,7 @@ public class Coupon {
 	}
 
 	public void setImage(String image) {
-		if (image == null || image.equals("") || !new File(image).isFile()){
+		if (image == null || image.equals("")){
 			this.image = DEFAULT_ICON;
 		} else {
 			this.image = image;

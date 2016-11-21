@@ -71,7 +71,7 @@
                 {
                     name: 'CouponImagePath',
                     displayName: 'Image',
-                    cellTemplate: "<img width=\"50px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>"
+                    cellTemplate: "<img height=\"30px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>"
                 }
             ]
         };

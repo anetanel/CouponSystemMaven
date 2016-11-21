@@ -16,25 +16,6 @@
             <input id="message" type="text" class="form-control" ng-model="selectedRow.CouponMessage" required>
         </div>
 
-
-<!--         <div> -->
-<!--             <label for="startDate">Start Date:</label> -->
-<!--             <br> -->
-<!--             <input id="startDate" class="btn btn-default" type="text" -->
-<!--                    ng-click="startDateCollapsed = !startDateCollapsed" -->
-<!--                    value="{{selectedRow.CouponStartDate | date: 'yyyy-MM-dd'}}" required="required"> -->
-<!--             <div uib-datepicker ng-model="selectedRow.CouponStartDate" uib-collapse="startDateCollapsed"></div> -->
-<!--         </div> -->
-
-<!--         <div> -->
-<!--             <label for="endDate">End Date:</label> -->
-<!--             <br> -->
-
-<!--             <input id="endDate" class="btn btn-default" type="text" ng-click="endDateCollapsed = !endDateCollapsed" -->
-<!--                    value="{{selectedRow.CouponEndDate | date: 'yyyy-MM-dd'}}" required="required"> -->
-<!--             <div uib-datepicker ng-model="selectedRow.CouponEndDate" uib-collapse="endDateCollapsed"></div> -->
-<!--         </div> -->
-
     <div class="row">
       <div class="col-md-6">
       <label for="startDate">Start Date:</label>
@@ -77,14 +58,23 @@
                    max="9999" required>
         </div>
 
-        <!-- 	<div> -->
-        <!-- 		<form action="rest/upload" method="post" enctype="multipart/form-data"> -->
-        <!-- 			<input type="file" name="file" accept="image/*" class="btn btn-default"> -->
-        <!-- 			<input type="submit" value="Upload Image" class="btn btn-default"/> -->
-        <!-- 		</form> -->
-        <!-- 	</div> -->
-
-        <div>Image:</div>
+<!--         	<div> -->
+<!--         		<ng-form name="uploadForm" action="rest/upload" method="post" enctype="multipart/form-data"> -->
+<!--         			<input type="file" name="file" accept="image/*" class="btn btn-default"> -->
+<!--         			<input type="submit" value="Upload Image" class="btn btn-default"/> -->
+<!--         		</ng-form> -->
+<!--         	</div> -->
+		<div>
+		<label>Icon:</label>
+		<br>
+<!-- 		<div uib-alert ng-repeat="alert in alerts" ng-class="'alert-warning'" dismiss-on-timeout="5000" close="closeAlert($index)">{{alert.message}}</div> -->
+        <img ng-hide="iconFile" ng-src="{{selectedRow.CouponImagePath}}" style="width: 200px; height: auto;"/>
+        <img ngf-src="iconFile" ngf-resize="{width: 200, height: 200}"/>
+		<br>
+		<div class="btn btn-default" ngf-accept="'image/*'" ngf-select="selectIcon($file)" >Upload New Coupon Icon</div>
+		</div>
+        
+		
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary btnCustom">OK</button>
