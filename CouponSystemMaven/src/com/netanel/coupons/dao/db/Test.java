@@ -32,18 +32,20 @@ public class Test {
 			con.createStatement().executeUpdate("DELETE FROM Coupon");
 			con.createStatement().executeUpdate("DELETE FROM Company_Coupon");
 			con.createStatement().executeUpdate("DELETE FROM Customer_Coupon");
+			con.createStatement().executeUpdate("DELETE FROM INCOME");
 			con.createStatement().executeUpdate("ALTER TABLE COMPANY alter COLUMN ID RESTART WITH 1");
 			con.createStatement().executeUpdate("ALTER TABLE CUSTOMER alter COLUMN ID RESTART WITH 1");
 			con.createStatement().executeUpdate("ALTER TABLE COUPON alter COLUMN ID RESTART WITH 1");
+			con.createStatement().executeUpdate("ALTER TABLE INCOME alter COLUMN ID RESTART WITH 1");
 			//con.createStatement().executeUpdate("UPDATE sqlite_sequence set seq=0");
 		}
 
 		/////////////////////////////////////////////
 
 		// Get Admin Facade
-		AdminFacade admin = null;
-		admin = new AdminFacade().login("admin", "1234".toCharArray(), ClientType.ADMIN);
-
+		AdminFacade admin = new AdminFacade().login("admin", "1234".toCharArray(), ClientType.ADMIN);
+		
+	
 		// Create some companies
 		admin.createCompany(
 				new Company("IBM", new Password("1234".toCharArray()), "info@ibm.com", new HashSet<Coupon>()));

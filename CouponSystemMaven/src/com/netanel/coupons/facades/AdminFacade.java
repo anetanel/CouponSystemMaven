@@ -28,9 +28,7 @@ public class AdminFacade implements CouponClientFacade {
 	// Constructors
 	//
 	public AdminFacade() {
-		compDao = CouponSystem.getInstance().getCompDao();
-		custDao = CouponSystem.getInstance().getCustDao();
-		couponDao = CouponSystem.getInstance().getCouponDao();
+		
 	}
 
 	//
@@ -40,6 +38,9 @@ public class AdminFacade implements CouponClientFacade {
 	public AdminFacade login(String name, char[] password, ClientType clientType) throws LoginException {
 		if (name.toLowerCase().equals(ADMIN_USERNAME) && String.valueOf(password).equals(ADMIN_PASS)
 				&& clientType.equals(ClientType.ADMIN)) {
+			compDao = CouponSystem.getInstance().getCompDao();
+			custDao = CouponSystem.getInstance().getCustDao();
+			couponDao = CouponSystem.getInstance().getCouponDao();
 			return this;
 		} else {
 			throw new LoginException("Admin Login Failed.");

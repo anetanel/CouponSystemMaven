@@ -34,8 +34,11 @@ class DB {
 		try {
 //			cpds.setDriverClass( "org.sqlite.JDBC" );
 //			cpds.setJdbcUrl( "jdbc:sqlite:c:\\coupondb\\CouponsDB.db" );
-			cpds.setDriverClass( "org.apache.derby.jdbc.EmbeddedDriver" );
-			cpds.setJdbcUrl( "jdbc:derby:C:\\coupondb\\DerbyCouponDb.db" );
+//			cpds.setDriverClass( "org.apache.derby.jdbc.EmbeddedDriver" );
+//			cpds.setJdbcUrl( "jdbc:derby:C:\\coupondb\\DerbyCouponDb.db" );
+			cpds.setDriverClass( "org.apache.derby.jdbc.ClientDriver");
+			cpds.setJdbcUrl( "jdbc:derby://localhost/C:\\coupondb\\DerbyCouponDb.db" );
+
 			cpds.setMaxStatements( 180 );
 			//cpds.setMaxPoolSize(1);
 		} catch (PropertyVetoException e) {
